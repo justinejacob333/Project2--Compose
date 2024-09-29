@@ -54,6 +54,6 @@ networks:
 
 volumes:
 #Volumes
-  docker-certs-ca
-  docker-certs-client
-  jenkins-data # volume to persist Jenkins home directory
+  docker-certs-ca: {}
+  docker-certs-client: {}
+  jenkins-data: {} # volume to persist Jenkins home directory
