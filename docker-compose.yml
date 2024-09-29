@@ -14,7 +14,7 @@ services:
         aliases:
           - docker
     environment:
-      DOCKER_TLS_CERTDIR: "/certs" #Directory for TLS certs
+      DOCKER_TLS_CERTDIR: /certs #Directory for TLS certs
     volumes:
       # Volume for Docker certificates
       - docker-certs-ca:/certs/ca
@@ -34,15 +34,15 @@ services:
       - 50000:50000 # 
     volumes:
       # Volume for Jenkins data 
-      - ./jenkins:/var/jenkins_home
+      - jenkins-data:/var/jenkins_home
       # Mount docker binary from host to allow Jenkins to use Docker
       - /usr/bin/docker:/usr/bin/docker
       # Volume for Docker client certificates in Jenkins
       - docker-certs-client:/certs/client:ro
     environment:
     # Setting up the host to connect Jenkins with Docker daemon in the DinD container
-      DOCKER_HOST: "tcp://docker:2376"
-      DOCKER_CERT_PATH: "/certs/client" # Docker client certificate path
+      DOCKER_HOST: tcp://docker:2376
+      DOCKER_CERT_PATH: /certs/client # Docker client certificate path
       DOCKER_TLS_VERIFY: 1 #E nabling TLS verification
     networks:
       - jenkins_dind # Attaching this conatiner to the network
@@ -54,6 +54,6 @@ networks:
 
 volumes:
 #Volumes
-  docker-certs-ca:
-  docker-certs-client:
-  jenkins-data: # volume to persist Jenkins home directory
+  docker-certs-ca:{}
+  docker-certs-client:{}
+  jenkins-data: {}# volume to persist Jenkins home directory
