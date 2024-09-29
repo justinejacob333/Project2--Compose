@@ -12,7 +12,7 @@ services:
        #Attaching conatiner to the network
       jenkins_dind:
         aliases:
-	        - docker
+	  - docker
     environment:
       DOCKER_TLS_CERTDIR: "/certs" #Directory for TLS certs
     volumes:
